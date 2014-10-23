@@ -1,0 +1,50 @@
+<DOCTYPE! HTML>
+<html>
+<head>
+	<link rel='stylesheet' type='text/css' href='style.css'>
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+</head>
+<body>
+	<h1 id='title'>
+		Github Profiles
+	</h1>
+	<main>
+		<section id='input'>
+			<form class="pure-form">
+				<input type='text' id='profile_name' placeholder='Github Username'/>
+				<a class='pure-button' href='#' id='fetch_github_profile'>OK</a>
+			</form>
+		</section>
+		<section id='profiles'>
+		</section>
+	</main>
+	<template id='profileTemplate'>
+			<style> @import 'template.css'; </style>
+		<article>
+			<header>
+				<img src='{{avatar_url}}'/>
+			</header>
+			<h1>{{name}}</h1>
+			<h2>{{login}}</h2>
+			<p>
+				<strong id='followers'>{{followers}} followers</strong>
+			</p>
+			<p>
+				<strong id='repos'>{{public_repos}} public repos</strong>
+			</p>
+		</article>
+	</template>
+	<script type='text/javascript' src='jquery-2.1.1.min.js'></script>
+	<script type='text/javascript' src='handlebars-v2.0.0.js'></script>
+	<script>
+		$('#fetch_github_profile').on('click', function() {
+			var profile_name = $('#profile_name').val();
+			var source = $('#profileTemplate').html();
+			var template = Handlebars.compile(source);
+			$.get('https://api.github.com/users/' + profile_name + '?client_id=f5d56170207525c942f9&client_secret=56d812b6327b0037e3a7c17f8e9fcb905582caae', function(gitHubProfile) { 
+				$('#profiles').append(template(gitHubProfile));
+				});
+		});
+	</script>
+</body>
+</html>

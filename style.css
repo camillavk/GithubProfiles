@@ -1,0 +1,28 @@
+/****************import***********************/
+
+@import url('http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext');
+
+/*******************layout************************/
+
+#title {
+  text-align: center;
+}
+
+#input {
+  text-align: center;
+}
+
+/*******************typography*************************/
+*{
+	font-family:Lato;
+}
+
+#title {
+	font-size: 3em;
+	text-shadow: 2px 2px 8px #5CADFF;
+}
+
+h1, h2 {
+	font-size: 2em;
+}
+
